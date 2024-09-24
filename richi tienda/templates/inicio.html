@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="/static/css/inicio.css">
+</head>
+<body class="bg-gray-50">
+    <div class="flex flex-col min-h-screen">
+        <nav class="bg-gradient-to-r from-blue-500 to-blue-700 p-4 shadow-lg">
+            {% block navegacion %}
+            <div class="max-w-screen-xl mx-auto flex justify-between items-center">
+                <div class="text-white text-lg font-semibold">
+                    Tienda
+                </div>
+                <ul class="flex space-x-6">
+                    <li>
+                        <a href="#" class="text-white hover:text-yellow-300 transition duration-300">Productos</a>
+                    </li>
+                    <li>
+                        <a href="#" class="text-white hover:text-yellow-300 transition duration-300">Salir</a>
+                    </li>
+                </ul>
+            </div>
+            {% endblock %}
+        </nav>
+        
+        <main class="flex-grow container mx-auto p-6">
+            {% block contenido %}
+            {% endblock %}
+        </main>
+
+        <footer class="bg-red-600 text-white text-center p-4 mt-4 shadow-inner">
+            <p>© 2024 Tienda richii</p>
+        </footer>
+    </div>
+</body>
+</html>

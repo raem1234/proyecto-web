@@ -1,0 +1,45 @@
+{% extends "inicio.html" %}
+
+{% block navegacion %}
+{% endblock %}
+
+{% block contenido %}
+    <div class="max-w-md mx-auto p-6 bg-gray-100 shadow-lg rounded-lg mt-10">
+        <h1 class="text-3xl font-bold text-green-600 mb-6 text-center">Actualizar Producto</h1>
+
+        <form action="{{ url_for('actualizar_producto') }}" method="POST" enctype="multipart/form-data" onsubmit="console.log('Formulario enviado');">
+            <input type="hidden" name="id" value="{{ producto._id }}"> 
+
+            <div>
+                <label for="txtNombre" class="block mb-2 text-sm font-medium text-gray-800">Nombre:</label>
+                <input type="text" id="txtNombre" name="txtNombre" value="{{ producto.nombre }}" class="w-full p-3 text-sm text-gray-800 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-green-500" required>
+            </div>
+            <div>
+                <label for="txtPrecio" class="block mb-2 text-sm font-medium text-gray-800">Precio:</label>
+                <input type="number" id="txtPrecio" name="txtPrecio" value="{{ producto.precio }}" class="w-full p-3 text-sm text-gray-800 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-green-500" required>
+            </div>
+            <div>
+                <label for="cbCategoria" class="block mb-2 text-sm font-medium text-gray-800">Categoría:</label>
+                <select name="cbCategoria" id="cbCategoria" required class="border border-gray-300 rounded-md p-3 w-full focus:outline-none focus:ring-2 focus:ring-green-500">
+                    <option value="Electrónica" {% if producto.categoria == 'Electrónica' %}selected{% endif %}>Electrónica</option>
+                    <option value="Accesorios" {% if producto.categoria == 'Accesorios' %}selected{% endif %}>Accesorios</option>
+                    <option value="Fotografía" {% if producto.categoria == 'Fotografía' %}selected{% endif %}>Fotografía</option>
+                    <option value="Ropa" {% if producto.categoria == 'Ropa' %}selected{% endif %}>Ropa</option>
+                </select>
+            </div>
+            <div>
+                <label for="fileFoto" class="block mb-2 text-sm font-medium text-gray-800">Imagen:</label>
+                <input type="file" id="fileFoto" name="fileFoto" class="w-full p-2 text-sm text-gray-700 border border-gray-300 rounded-md">
+            </div>
+            <div>
+                <input type="hidden" name="txtCodigo" value="{{ producto.codigo }}">  
+            </div>
+            <div>
+                <input type="submit" value="Actualizar" class="bg-green-500 hover:bg-green-600 text-white font-bold py-2 px-4 rounded-md mt-4 transition duration-200 w-full">
+            </div>
+        </form>
+        <div class="mt-4">
+            <a href="{{ url_for('listar_productos') }}" class="bg-gray-600 hover:bg-gray-700 text-white font-bold py-2 px-4 rounded-md w-full text-center block">Volver a listar productos</a>
+        </div>
+    </div>
+{% endblock %}

@@ -1,0 +1,38 @@
+{% extends "inicio.html" %}
+
+{% block navegacion %}
+    {% include "navegacion.html" %}
+{% endblock %}
+
+{% block contenido %}
+    <div class="max-w-md mx-auto bg-gradient-to-r from-indigo-500 to-purple-500 shadow-lg rounded-lg p-8 mt-10">
+        <h3 class="text-center text-3xl font-bold mb-6 text-white">INICIAR SESIÓN</h3>
+        <form action="/" method="post" class="space-y-6">
+            <div>
+                <label for="txtUsername" class="block text-sm font-semibold text-white">Usuario:</label>
+                <input type="text" name="txtUsername" id="txtUsername" class="mt-1 block w-full border border-white rounded-md p-3 focus:outline-none focus:ring-2 focus:ring-yellow-300 bg-gray-800 text-white" required>
+            </div>
+            <div>
+                <label for="txtPassword" class="block text-sm font-semibold text-white">Contraseña:</label>
+                <input type="password" name="txtPassword" id="txtPassword" class="mt-1 block w-full border border-white rounded-md p-3 focus:outline-none focus:ring-2 focus:ring-yellow-300 bg-gray-800 text-white" required>
+            </div>
+            <div class="flex justify-between">
+                <button type="submit" class="w-full bg-green-500 text-white font-semibold py-2 rounded-md hover:bg-green-600 transition duration-200">Ingresar</button>
+                <button type="reset" class="ml-2 w-full bg-gray-200 text-gray-700 font-semibold py-2 rounded-md hover:bg-gray-300 transition duration-200">Cancelar</button>
+            </div>
+        </form>
+        {% if mensaje %}
+            <script>
+                Swal.fire({
+                    title: "Ingreso al sistema",
+                    text: '{{ mensaje }}',
+                    icon: "info",
+                    confirmButtonText: "OK"
+                });
+            </script>
+        {% endif %}
+    </div>
+    <footer class="bg-gray-800 text-white text-center p-4 mt-6 rounded-lg shadow-md">
+        <p>© 2024 Tienda richi</p>
+    </footer>
+{% endblock %}
