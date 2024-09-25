@@ -1,0 +1,24 @@
+def agregarProducto():
+
+try:
+
+ttaquí datos quemados podrian ser solicitados
+
+codigo = 19
+nombre = "Televisor"
+precio = 2500088
+categoria="Electrodomestico"
+ticrear objeto producto tipo diccionario
+producto = [
+"codigo": codigo,
+“nombre":nombre,
+"precio": precio,
+"categoria":categoria
+y
+
+resultado = productos.insert_one(producto)
+print("Producto agregado correctamente")
+
+except pymongo.errors as error:
+
+print(error)

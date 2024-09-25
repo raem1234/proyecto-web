@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Tienda</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+</head>
+<body class="bg-gradient-to-r from-blue-100 to-blue-300 h-screen">
+    <h1 class="text-center font-bold text-4xl mt-4 text-gray-800">Tienda</h1>
+
+    <div class="mt-4 flex justify-center space-x-4">
+        <a href="{{ url_for('agregar') }}">
+            <button type="button" class="bg-gray-800 hover:bg-gray-600 text-white font-bold py-2 px-6 rounded-lg transition duration-200">Agregar</button>
+        </a>
+        <a href="{{ url_for('listar') }}">
+            <button type="button" class="bg-gray-800 hover:bg-gray-600 text-white font-bold py-2 px-6 rounded-lg transition duration-200">Listar</button>
+        </a>
+    </div>
+
+    <div class="relative overflow-x-auto shadow-md mt-6 mx-4 rounded-lg bg-white">
+        <table class="min-w-full text-sm text-left text-gray-500">
+            <thead class="text-xs text-gray-700 uppercase bg-gray-50">
+                <tr>
+                    <th scope="col" class="py-3 px-6">Código</th>
+                    <th scope="col" class="py-3 px-6">Nombre</th>
+                    <th scope="col" class="py-3 px-6">Precio</th>
+                    <th scope="col" class="py-3 px-6">Categoría</th>
+                    <th scope="col" class="py-3 px-6">Foto</th>
+                    <th scope="col" class="py-3 px-6">Acciones</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for producto in productos %}
+                <tr class="bg-white border-b">
+                    <td class="py-4 px-6">{{ producto['codigo'] }}</td>
+                    <td class="py-4 px-6">{{ producto['nombre'] }}</td>
+                    <td class="py-4 px-6">{{ producto['precio'] }}</td>
+                    <td class="py-4 px-6">{{ producto['categoria'] }}</td>
+                    <td class="py-4 px-6">
+                        {% if producto['foto'] %}
+                        <img src="{{ url_for('static', filename='img/' + producto['foto']) }}" alt="Foto" width="50" class="rounded">
+                        {% else %}
+                        Sin foto
+                        {% endif %}
+                    </td>
+                    <td class="py-4 px-6 flex space-x-2">
+                        <form action="{{ url_for('eliminar', codigo=producto['codigo']) }}" method="post" style="display:inline;">
+                            <button type="submit" class="bg-red-500 hover:bg-red-700 text-white font-bold py-2 px-4 rounded transition duration-200">Eliminar</button>
+                        </form>
+                        <form action="{{ url_for('actualizar', codigo=producto['codigo']) }}" method="get" style="display:inline;">
+                            <button type="submit" class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded transition duration-200">Actualizar</button>
+                        </form>
+                    </td>
+                </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+    </div>
+</body>
+</html>
